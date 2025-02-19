@@ -1,0 +1,41 @@
+h1 {
+    font-family: noto SansSerif, sans-serif;
+}
+
+h2 {
+    font-family: noto SansSerif, sans-serif;
+}
+
+td {
+    font-family: noto SansSerif, sans-serif;
+}
+
+p {
+    font-family: noto SansSerif, sans-serif;
+}
+
+.education table th{
+    padding : 5px 10px;
+    font-family: noto SansSerif, sans-serif;
+    border:  1px white;
+}
+.education table td{
+    padding : 5px 10px;
+    font-family: noto SansSerif, sans-serif;
+    border: solid 1px white;
+}
+
+a:link {
+    color: blue;
+    text-decoration: none;
+}
+
+a:visited {
+    color: blue;
+    text-decoration: none;
+}
+
+body {
+    background-color: bisque;
+}
+
