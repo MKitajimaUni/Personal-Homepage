@@ -17,12 +17,12 @@ p {
 .education table th{
     padding : 5px 10px;
     font-family: noto SansSerif, sans-serif;
-    border:  1px white;
+    background-color: white;
 }
 .education table td{
     padding : 5px 10px;
     font-family: noto SansSerif, sans-serif;
-    border: solid 1px white;
+    background-color: white;
 }
 
 a:link {
@@ -36,6 +36,6 @@ a:visited {
 }
 
 body {
-    background-color: bisque;
+    background-color: navajowhite;
 }
 
