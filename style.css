@@ -4,6 +4,7 @@ h1 {
 
 h2 {
     font-family: noto SansSerif, sans-serif;
+    margin-top: 20px;
 }
 
 td {
@@ -14,10 +15,12 @@ p {
     font-family: noto SansSerif, sans-serif;
 }
 
+.education table {
+}
 .education table th{
     padding : 5px 10px;
     font-family: noto SansSerif, sans-serif;
-    background-color: white;
+    border-right: 3px solid blue;
 }
 .education table td{
     padding : 5px 10px;
@@ -25,8 +28,33 @@ p {
     background-color: white;
 }
 
+.skills table {
+    margin-bottom: 10px;
+}
+.skills table th {
+    padding : 5px 10px;
+    text-align: left;
+    font-family: noto SansSerif, sans-serif;
+    border-bottom: 3px solid blue;
+    border-left: 3px solid blue;
+}
+
+.skills table td{
+    padding : 5px 10px;
+    font-family: noto SansSerif, sans-serif;
+    background-color: white;
+}
+
+.language table td, .language table th{
+    padding : 5px 10px;
+    font-family: noto SansSerif, sans-serif;
+}
+
+.language table th{
+   border-right: 3px solid blue;
+}
+
 a:link {
-    color: blue;
     text-decoration: none;
 }
 
