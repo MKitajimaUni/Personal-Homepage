@@ -15,6 +15,10 @@ p {
     font-family: noto SansSerif, sans-serif;
 }
 
+.contact table td {
+    padding : 3px 10px;
+}
+
 .education table {
 }
 .education table th{
@@ -63,7 +67,11 @@ a:visited {
     text-decoration: none;
 }
 
+div {
+}
+
 body {
     background-color: navajowhite;
+    margin: 30px;
 }
 
