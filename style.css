@@ -60,6 +60,10 @@ body {
 /* end of public style */
 /* home style*/
 
+.contact p {
+    color: gray;
+}
+
 .contact table {
 }
 
@@ -133,8 +137,7 @@ body {
 
 .triplist {
     margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 50px;
 }
 
 .triplist table {
@@ -155,6 +158,54 @@ body {
 
 .triplist a {
     color: blue;
+}
+
+/*end of travel*/
+/*style for each page of travel report*/
+
+.travelreport {
+
+}
+
+.travelreport h1 {
+    text-align: center;
+}
+
+.travelreport h2 {
+    text-align: center;
+}
+
+.travelreport td {
+}
+
+.travelreport p {
+    text-align: center;
+}
+
+.travelreport figure {
+    text-align: center;
+    font-family: noto SansSerif, sans-serif;
+}
+
+.travelmenu nav {
+    width: 30%;
+    height: 50px;
+    padding-top: 2px;
+    box-sizing: border-box;
+    background-color: white;
+
+}
+
+.travelmenu {
+    font-family: noto SansSerif, sans-serif;
+}
+
+.travelmenu ul {
+    display: flex;
+}
+
+.travelmenu li {
+    list-style: none;
 }
 
 
