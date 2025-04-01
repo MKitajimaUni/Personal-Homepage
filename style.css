@@ -128,8 +128,35 @@ body {
 }
 
 .title h1 {
-    position: relative;
     color: white;
 }
+
+.triplist {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.triplist table {
+    width: 100%;
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.triplist table td {
+    text-align: center;
+    color: gray;
+}
+
+.triplist table th {
+    font-weight: bold;
+    font-family: noto SansSerif, sans-serif;
+}
+
+.triplist a {
+    color: blue;
+}
+
+
 
 
