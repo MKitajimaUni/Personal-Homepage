@@ -18,10 +18,6 @@ p {
     font-family: noto SansSerif, sans-serif;
 }
 
-table {
-    margin-right: auto;
-}
-
 a:link {
     text-decoration: none;
 }
@@ -38,8 +34,6 @@ body {
 .menu {
     font-family: noto SansSerif, sans-serif;
     background-color: white;
-    border: 3px solid white;
-    border-radius: 10px;
 }
 
 .menu nav {
@@ -66,9 +60,6 @@ body {
 /* end of public style */
 /* home style*/
 
-.contact{
-    margin-top: 20px;
-}
 .contact p {
     color: gray;
 }
@@ -80,9 +71,6 @@ body {
     padding: 3px 10px;
 }
 
-.education {
-    margin-top: 20px;
-}
 .education table {
 }
 
@@ -96,10 +84,6 @@ body {
     padding: 5px 10px;
     font-family: noto SansSerif, sans-serif;
     background-color: white;
-}
-
-.skills {
-    margin-top: 20px;
 }
 
 .skills table {
@@ -120,9 +104,6 @@ body {
     background-color: white;
 }
 
-.language {
-    margin-top: 20px;
-}
 .language table td, .language table th {
     padding: 5px 10px;
     font-family: noto SansSerif, sans-serif;
@@ -157,11 +138,6 @@ body {
 
 .triplist {
     margin: 20px auto 50px;
-}
-
-.triplist img {
-    border: 5px solid navajowhite;
-    border-radius: 5%;
 }
 
 .triplist h2 {
@@ -202,32 +178,7 @@ body {
     text-align: center;
 }
 
-.travelreport table {
-    padding: 5px 10px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.travelreport table tr {
-    padding: 5px;
-}
-
-.travelreport th {
-    padding: 5px 10px;
-    font-family: noto SansSerif, sans-serif;
-    text-align: center;
-    border-right: 5px double blue;
-    background-color: gray;
-}
-
 .travelreport td {
-    padding: 5px 10px;
-    text-align: left;
-}
-
-.travelreport img {
-    border: 3px solid black;
-    border-radius: 10px;
 }
 
 .travelreport p {
@@ -238,6 +189,7 @@ body {
     font-family: noto SansSerif, sans-serif;
     text-align: center;
     margin: auto;
+    padding: 10px;
 }
 
 .travelreport figure img {
@@ -248,7 +200,8 @@ body {
 }
 
 .travelreport figcaption {
-    color: gray;
+    width: 410px;
+    background-color: gray;
     margin-left: auto;
     margin-right: auto;
 }
