@@ -19,7 +19,11 @@ p {
 }
 
 table {
-    margin-right: auto;
+}
+
+img {
+    border: 3px solid navajowhite;
+    border-radius: 10px;
 }
 
 a:link {
@@ -96,6 +100,8 @@ body {
     padding: 5px 10px;
     font-family: noto SansSerif, sans-serif;
     background-color: white;
+    border: 3px solid white;
+    border-radius: 10px;
 }
 
 .skills {
