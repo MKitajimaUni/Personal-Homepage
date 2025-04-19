@@ -147,15 +147,11 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 10vh;
+    height: 70px;
     width: 100%;
     overflow: hidden;
     text-align: center;
     border-radius: 10px;
-}
-
-.title table {
-    position: absolute;
 }
 
 .title h1 {
@@ -285,7 +281,7 @@ body {
 }
 
 .travelreport p {
-    padding: 10px;
+    padding: 10px 10px 20px;
 }
 
 .travelreport a {
