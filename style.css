@@ -285,11 +285,11 @@ body {
 }
 
 .travelreport a {
-    color: dimgray;
+    color: cadetblue;
+    text-decoration-color: cadetblue;
 }
 
 .travelreport a:link {
-    text-decoration: underline;
 }
 
 .travelmenu nav {
