@@ -146,7 +146,7 @@ body {
 
 .title {
     font-family: noto SansSerif, sans-serif;
-    background-image: url("/pics/tokyo_akiba.png");
+    background-image: url("tokyo_akiba.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -328,6 +328,26 @@ body {
 
 .travelmenu li {
     list-style: none;
+}
+
+/*end of travel*/
+/*math and cs */
+.mathtitle {
+    font-family: noto SansSerif, sans-serif;
+    background-image: url("japan_header.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 100%;
+    max-lines: 1;
+    overflow: hidden;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.mathtitle h1 {
+    color: white;
 }
 
 
