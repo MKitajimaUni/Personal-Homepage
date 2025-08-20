@@ -223,8 +223,8 @@ body {
     font-family: noto SansSerif, sans-serif;
     text-align: center;
     background-color: gray;
-    border-right: 5px solid blue;
-    border-bottom: 5px solid blue;
+    border-right: 5px solid cadetblue;
+    border-bottom: 5px solid cadetblue;
     border-radius: 10px;
 }
 

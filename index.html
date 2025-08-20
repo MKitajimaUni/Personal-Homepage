@@ -2,183 +2,149 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="styles/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mitsuhiro Kitajima</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-light">
 
-<div class="menu">
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="travel.html">My Travel</a></li>
-            <li><a href ="math.html">Math and CS</a></li>
-        </ul>
-    </nav>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">Mitsuhiro Kitajima</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="travel.html">My Travel</a></li>
+                <li class="nav-item"><a class="nav-link" href="math.html">Math and CS</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <!-- About -->
+    <div class="row align-items-center mb-5">
+        <div class="col-md-3 text-center">
+            <img src="pics/photo_kitajima.jpg" alt="my photo" class="img-thumbnail rounded-circle" width="200" height="200">
+        </div>
+        <div class="col-md-9">
+            <h2>About me</h2>
+            <p>Hello! I'm Mitsuhiro. I was born in 2003 in Tokyo, Japan.<br>
+                Currently, I am a bachelor student of computer science at the
+                <a href="https://www.plus.ac.at" target="_blank">University of Salzburg</a>.
+            </p>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="mb-5">
+        <h2>Contact</h2>
+        <table class="table table-borderless align-middle">
+            <tbody>
+            <tr>
+                <td><img src="pics/phone.png" alt="TEL:" width="30"></td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td><img src="pics/mail.png" alt="Email:" width="30"></td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td><img src="pics/github-logo.png" alt="GitHub:" width="30"></td>
+                <td><a href="https://github.com/MKitajimaUni/" target="_blank">link to my GitHub</a></td>
+            </tr>
+            <tr>
+                <td><img src="pics/linkedin-logo.png" alt="Linkedin:" width="30"></td>
+                <td><a href="https://linkedin.com/in/mitsuhiro-kitajima-86403a228" target="_blank">link to my Linkedin</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="text-muted">If you want to contact me, please use LinkedIn.<br>
+            Phone number and e-mail are currently not available.</p>
+    </div>
+
+    <!-- Education -->
+    <div class="mb-5">
+        <h2>Education</h2>
+        <table class="table table-striped">
+            <tbody>
+            <tr>
+                <th>Computer Science, BSc</th>
+                <td>Oct 2023 - </td>
+                <td>Paris Lodron University of Salzburg</td>
+                <td>Salzburg, Austria</td>
+            </tr>
+            <tr>
+                <th>Clinical Psychology, BA</th>
+                <td>Apr 2021 - Jul 2023</td>
+                <td>Rissho University</td>
+                <td>Tokyo, Japan</td>
+            </tr>
+            <tr>
+                <th>High school diploma</th>
+                <td>March 2021</td>
+                <td>Taisei high school</td>
+                <td>Tokyo, Japan</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Skills -->
+    <div class="mb-5">
+        <h2>IT knowledge</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Programming Languages</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Java, C, C++, C#, Kotlin, Python, Go, Rust</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h5>Web Development and Frameworks</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">HTML, CSS, JavaScript, typescript, PHP, Next.js, Node.js</li>
+                </ul>
+                <h5 class="mt-3">Other</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">SQL, Microsoft Office</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Language -->
+    <div class="mb-5">
+        <h2>Language skills</h2>
+        <table class="table table-dark align-middle">
+            <tbody>
+            <tr>
+                <td><img src="pics/jp.png" alt="Japanese" width="40"></td>
+                <td>Mother tongue</td>
+            </tr>
+            <tr>
+                <td><img src="pics/eng.png" alt="English" width="40"></td>
+                <td>C1 (fluent)</td>
+            </tr>
+            <tr>
+                <td><img src="pics/ger.png" alt="German" width="40"></td>
+                <td>C1 (fluent)</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>
 
-<h1>Mitsuhiro Kitajima</h1>
-<table>
-    <tr>
-        <td><img src=pics/photo_kitajima.jpg alt="my photo" width="200" height="200">
-        <td>&nbsp;</td>
-        <td><h2> About me </h2>
-            Hello!
-            I'm Mitsuhiro.
-            I was born in 2003 in Tokyo, Japan.
-            <br>Currently, I am a bachelor student of computer science at the<a href="https://www.plus.ac.at">
-                University of Salzburg</a>.<br><br>
-
-        </td>
-    </tr>
-</table>
-
-<div class="contact">
-    <h2> Contact </h2>
-    <table>
-        <tbody>
-        <tr>
-            <td><img src="pics/phone.png" alt="TEL:" width="40" height="40"></td>
-            <td> - </td>
-        </tr>
-        <tr>
-            <td><img src="pics/mail.png" alt="Email:" width="40" height="40"></td>
-            <td> - </td>
-        </tr>
-        <tr>
-            <td><img src="pics/github-logo.png" alt="GitHub:" width="40" height="40"></td>
-            <td>
-                <a href="https://github.com/MKitajimaUni/">
-                    <div style="height:100%;width:100%">
-                        link to my GitHub
-                    </div>
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td><img src="pics/linkedin-logo.png" alt="Linkedin:" width="40" height="40"></td>
-            <td>
-                <a href="https://linkedin.com/in/mitsuhiro-kitajima-86403a228">
-                    <div style="height:100%;width:100%">
-                        link to my Linkedin
-                    </div>
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
-    <p> If you want to contact me, please use LinkedIn.
-        <br>Phone number and e-mail are currently not available.</p>
-</div>
-
-<div class="education">
-    <h2> Education </h2>
-    <table>
-        <tbody>
-        <tr>
-            <th>Computer Science, BSc</th>
-            <td>Oct 2023 - </td>
-            <td>Paris Lodron University of Salzburg</td>
-            <td>Salzburg, Austria</td>
-        </tr>
-        <tr>
-            <th></th>
-        </tr>
-        <tr>
-            <th>Clinical Psychology, BA</th>
-            <td>Apr 2021 - Jul 2023</td>
-            <td>Rissho University</td>
-            <td>Tokyo, Japan</td>
-        </tr>
-        <tr>
-            <th></th>
-        </tr>
-        <tr>
-            <th>High school diploma</th>
-            <td>March 2021</td>
-            <td>Taisei high school</td>
-            <td>Tokyo, Japan</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<div class="skills">
-    <h2> IT knowledge </h2>
-    <table>
-        <thead>
-        <tr>
-            <th colspan="7"> Programming Languages</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Java</td>
-            <td>C</td>
-            <td>C++</td>
-            <td>C#</td>
-            <td>Kotlin</td>
-            <td>Python</td>
-            <td>Go</td>
-        </tr>
-        </tbody>
-    </table>
-    <table>
-        <thead>
-        <tr>
-            <th colspan="4"> Web Development</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>HTML</td>
-            <td>CSS</td>
-            <td>JavaScript</td>
-            <td>PHP</td>
-        </tr>
-        </tbody>
-    </table>
-    <table>
-        <thead>
-        <tr>
-            <th colspan="2"> Other languages</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>SQL</td>
-            <td>Microsoft Office</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<div class="language">
-    <h2> Language skills </h2>
-    <table>
-        <tr>
-            <th><img src="pics/jp.png" alt="Japanese" width="40" height="26">
-            </th>
-            <td>
-                Mother tongue
-            </td>
-        </tr>
-        <tr>
-            <th><img src="pics/eng.png" alt="English" width="40" height="26"></th>
-            <td>
-                C1 (fluent)
-            </td>
-        </tr>
-        <tr>
-            <th><img src="pics/ger.png" alt="German" width="40" height="26"></th>
-            <td>
-                C1 (fluent)
-            </td>
-        </tr>
-    </table>
-</div>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
