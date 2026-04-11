@@ -222,7 +222,7 @@ body {
     padding: 5px 10px;
     font-family: noto SansSerif, sans-serif;
     text-align: center;
-    background-color: gray;
+    background-color: #f8f0e2;
     border-right: 5px solid blue;
     border-bottom: 5px solid blue;
     border-radius: 10px;
@@ -241,7 +241,7 @@ body {
 .travelreport p {
     width:60%;
     margin:5px auto;
-    background-color: lightgray;
+    background-color: #f8f0e2;
     border-radius: 10px;
 }
 
@@ -275,7 +275,7 @@ body {
 
     .travelreport p {
         min-width: 90%;
-        background-color: lightgray;
+        background-color: #f8f0e2;
         border-radius: 10px;
     }
 
