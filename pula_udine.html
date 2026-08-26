@@ -3,10 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="scripts" href="scripts/rate.js">
     <meta name="viewport" content="width=device-width">
     <title>Pula and Udine / プーラとウディネ</title>
 </head>
 <body>
+<script src="scripts/rate.js"></script>
+
+<script>
+    async function main() {
+        const exchangeData = await getEURJPYJson();
+
+        if (exchangeData === null) {
+            return;
+        }
+
+        document.getElementById("eur-jpy-rate").textContent =
+            exchangeData.rate.toFixed(2);
+
+        document.getElementById("eur-jpy-date").textContent =
+            getJPStyleDate(exchangeData.date);
+
+        document.getElementById("convert-button").addEventListener("click", () => {
+            const eurAmount =
+                Number(document.getElementById("eur-input").value);
+
+            if (isNaN(eurAmount) || eurAmount <= 0) {
+                alert("0以上の値を入力してください。");
+                return;
+            }
+
+            const jpyAmount = getEURJPYRate(eurAmount, exchangeData.rate);
+
+            //document.getElementById("eur-amount").textContent = eurAmount;
+
+            document.getElementById("jpy-amount").textContent = jpyAmount.toFixed(2);
+        });
+    }
+
+    main();
+</script>
 
 <div class="menu">
     <nav>
@@ -21,10 +57,19 @@
     <h1>Pula and Udine<br>プーラとウディネ</h1>
 
     <p>
-        Pula is a great coastal city with a biggest number of Roman ruins in Croatia, and
+        Pula is a great coastal city with the largest number of Roman ruins in Croatia, and
         Udine is a small, cosy city with its unique regional northern Italian cuisine.
-        I could find many great places to visit and some restaurants where offer good and cheap cuisine. <br><br>
+        I could find many great places to visit and some restaurants that offer good and cheap cuisine. <br><br>
         プーラはクロアチアの海岸に位置する都市で、国内では最大級の古代ローマ遺跡があります。ウディネは北イタリアの小さな都市で、伝統料理で有名な町です。今回の旅行では、いろいろな素晴らしい場所を訪れ、美味しいレストランを見つけることもできました。
+    </p>
+
+    <h2>為替レート</h2>
+    <p>
+        現在の為替レートは、1ユーロ = <span id="eur-jpy-rate"></span>円 (<span id="eur-jpy-date"></span>現在) です。
+    </p>
+    <p>
+        <button id="convert-button">計算</button>
+        <input type="number" id="eur-input" placeholder="金額を入力">ユーロ = <span id="jpy-amount"></span>円
     </p>
 
     <h2>Itinerary<br>旅程</h2>
@@ -61,6 +106,7 @@
         </tr>
     </table>
     <h2>What I Ate<br>食べたもの</h2>
+    <h2>Pula<br>プーラ</h2>
     <figure>
         <img src="pics/pula_fritto.jpg" alt="Fritto Misto">
         <figcaption>Fritto misto
@@ -69,25 +115,28 @@
             <br>12€
         </figcaption>
     </figure>
-    <p>Because Pula is a costal city, you can of course find many restaurants that offer great seafood.
+    <p>Because Pula is a coastal city, you can of course find many restaurants that offer great seafood.
         Fritto misto means "mixed fry" and this one has fried sardines, shrimps, and squids with french fries.
-        The potion was huge and the ingredients were fresh. They don't do pre-made dishes, so it will take around 10
+        The portion was huge and the ingredients were fresh. They don't do pre-made dishes, so it will take around 10
         minutes to serve, but the time is really worth it!
         <br><br>
         プーラは港町なので、もちろん美味しいシーフード料理が食べられます。
         フリット・ミストはイタリア語で「ミックスドフライ」という意味で、これにはイカ、エビ、イワシと付け合わせのフライドポテトが入っていました。
         量はとても多く、材料も新鮮でした。注文を受けてから作るため10分ほどかかりますが、待つ価値はあると思います。
     </p>
+
+    <h2>Udine<br>ウディネ</h2>
+
     <figure>
         <img src="pics/udine_bier_polpette.jpg" alt="bier and polpette">
-        <figcaption>Bier (Moretti) and polpetti
+        <figcaption>Bier (Moretti) and polpette
             <br> ビール（モレッティ）とポルペッティ
             <br>&#128205; <a href="https://maps.app.goo.gl/y91Pnj7AHyy1uouD9">Pam (Trieste)</a>
             <br>1€ / 4€
         </figcaption>
     </figure>
     <p>
-        Polpetti are Italian-style meatballs. I bought these in the city of Trieste, where I stopped over while transferring buses, but to be honest, they were a bit bland. I wish they had come with some kind of sauce. The beer is a brand called Moretti, which you can find in any supermarket in Italy. It’s a lager with a refreshing, smooth taste; typical of Italian beer.
+        Polpette are Italian-style meatballs. I bought these in the city of Trieste, where I stopped over while transferring buses, but to be honest, they were a bit bland. I wish they had come with some kind of sauce. The beer is a brand called Moretti, which you can find in any supermarket in Italy. It’s a lager with a refreshing, smooth taste; typical of Italian beer.
         <br><br>
         ポルペッティとは、イタリア風の肉団子のことです。これはバスの乗り継ぎで立ち寄ったトリエステという街で買ったものですが、正直なところ、味が少し薄かったです。ソースなどがあれば良かったと思いました。ビールはモレッティというブランドで、イタリアならどのスーパーでも買うことのできるものです。味はイタリアビールらしい、クセのない爽やかな味のするラガービールです。
     </p>

@@ -3,10 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="scripts" href="scripts/rate.js">
     <meta name="viewport" content="width=device-width">
     <title>Verona and South Tirol</title>
 </head>
 <body>
+<script src="scripts/rate.js"></script>
+
+<script>
+    async function main() {
+        const exchangeData = await getEURJPYJson();
+
+        if (exchangeData === null) {
+            return;
+        }
+
+        document.getElementById("eur-jpy-rate").textContent =
+            exchangeData.rate.toFixed(2);
+
+        document.getElementById("eur-jpy-date").textContent =
+            getJPStyleDate(exchangeData.date);
+
+        document.getElementById("convert-button").addEventListener("click", () => {
+            const eurAmount =
+                Number(document.getElementById("eur-input").value);
+
+            if (isNaN(eurAmount) || eurAmount <= 0) {
+                alert("0以上の値を入力してください。");
+                return;
+            }
+
+            const jpyAmount = getEURJPYRate(eurAmount, exchangeData.rate);
+
+            //document.getElementById("eur-amount").textContent = eurAmount;
+
+            document.getElementById("jpy-amount").textContent = jpyAmount.toFixed(2);
+        });
+    }
+
+    main();
+</script>
+
 <div class="menu">
     <nav>
         <ul>
@@ -17,37 +54,76 @@
 
 <div class="travelreport">
 
-    <h1> Verona and South Tirol</h1>
+    <h1>Verona and South Tirol<br>ヴェローナと南チロル</h1>
 
-    <p> This was my very first trip to Italy. <br>
-        I am really surprised that the food is much tastier than I expected.
-        <br>They were also affordable, and I could sense some sort of "freshness" from the foods, which I could rarely
-        feel from the cuisine of other countries, even Japan.</p>
+    <p>
+        This was my very first trip to Italy. <br>
+        I was really surprised that the food was much tastier than I had expected.
+        <br>It was also affordable, and I could sense a certain "freshness" in the ingredients, which I have rarely found in the cuisine of other countries, even Japan.
+        <br><br>
+        これは私にとって初めてのイタリア旅行でした。<br>
+        食事が期待していたよりもはるかに美味しくて、本当に驚きました。<br>
+        価格も手頃で、他の国や日本でさえも滅多に感じられないような食材の「新鮮さ」を感じることができました。
+    </p>
 
-    <h2> What I Ate</h2>
+    <h2>為替レート</h2>
+    <p>
+        現在の為替レートは、1ユーロ = <span id="eur-jpy-rate"></span>円 (<span id="eur-jpy-date"></span>現在) です。
+    </p>
+    <p>
+        <button id="convert-button">計算</button>
+        <input type="number" id="eur-input" placeholder="金額を入力">ユーロ = <span id="jpy-amount"></span>円
+    </p>
+
+    <h2>What I Ate<br>食べたもの</h2>
     <figure>
         <img src="pics/verona_cappuccino.png" width="400" height="300" alt="Cappuccino">
-        <figcaption>Cappuccino<br>location: Verona, Italy</figcaption>
+        <figcaption>Cappuccino
+            <br>カプチーノ
+            <br>&#128205; Verona, Italy
+        </figcaption>
     </figure>
-    <p> This Cappuccino cost only around 1.8€ if I remembered correctly.
-        <br>The taste was relatively light, but the fragrance and the taste of the coffee was never weak.</p>
+    <p>
+        This cappuccino cost only around 1.8€, if I remember correctly.
+        <br>The taste was relatively light, but the fragrance and flavor of the coffee were not weak at all.
+        <br><br>
+        このカプチーノは私の記憶が正しければ、わずか1.8ユーロほどでした。<br>
+        味は比較的軽めでしたが、コーヒーの香りと風味は決して薄くありませんでした。
+    </p>
 
     <figure>
         <img src="pics/verona_pizza.png" width="400" height="300" alt="Pizza">
-        <figcaption>Pizza and Aperol Soda<br>location: Verona, Italy</figcaption>
+        <figcaption>Pizza and Aperol Spritz
+            <br>ピザとアペロールスプリッツ
+            <br>&#128205; Verona, Italy
+        </figcaption>
     </figure>
-    <p> That was one of the best pizzas I've ever eaten.
-        <br> Aperol soda had a really complex flavor consisting of bitter citrus and herbs.
-        <br> I think they are perfect for summer drinks, but not with pizzas.
+    <p>
+        That was one of the best pizzas I've ever eaten.
+        <br> The Aperol spritz had a really complex flavor, consisting of bitter citrus and herbs.
+        <br> I think it is a perfect summer drink, but perhaps not the best pairing for pizza.
+        <br><br>
+        これは私が今まで食べた中で最高のピザの一つでした。<br>
+        アペロールスプリッツは、苦味のある柑橘類とハーブが混ざり合った非常に複雑な味がしました。<br>
+        夏の飲み物としては完璧だと思いますが、ピザにはあまり合わないかもしれません。
     </p>
 
     <figure>
         <img src="pics/verona_tagliatelle.png" width="400" height="300" alt="Pasta">
-        <figcaption>Tagliatelle <br>location: Verona, Italy</figcaption>
+        <figcaption>Tagliatelle
+            <br>タリアテッレ
+            <br>&#128205; Verona, Italy
+        </figcaption>
     </figure>
-    <p> This tagliatelle was also good.
-        <br> The thing I like is that we can usually get free cheese for pasta and bread in almost every restaurant.
-        <br> The lemonade was also tasty. I wanted to buy exact same one in the supermarket, but I couldn't find it.</p>
+    <p>
+        This tagliatelle was also good.
+        <br> One thing I love is that you can usually get free cheese for your pasta, along with complimentary bread, in almost every restaurant.
+        <br> The lemonade was also tasty. I wanted to buy the exact same one in a supermarket, but I couldn't find it.
+        <br><br>
+        このタリアテッレも美味しかったです。<br>
+        私が気に入っているのは、ほぼすべてのレストランでパスタ用のチーズとパンが無料で提供されることです。<br>
+        レモネードも美味しかったです。スーパーで全く同じものを買いたかったのですが、見つかりませんでした。
+    </p>
 
 
 </div>

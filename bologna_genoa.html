@@ -3,14 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="scripts" href="scripts/rate.js">
     <meta name="viewport" content="width=device-width">
     <title>Bologna and Genoa</title>
 </head>
 <body>
+<script src="scripts/rate.js"></script>
+
+<script>
+    async function main() {
+        const exchangeData = await getEURJPYJson();
+
+        if (exchangeData === null) {
+            return;
+        }
+
+        document.getElementById("eur-jpy-rate").textContent =
+            exchangeData.rate.toFixed(2);
+
+        document.getElementById("eur-jpy-date").textContent =
+            getJPStyleDate(exchangeData.date);
+
+        document.getElementById("convert-button").addEventListener("click", () => {
+            const eurAmount =
+                Number(document.getElementById("eur-input").value);
+
+            if (isNaN(eurAmount) || eurAmount <= 0) {
+                alert("0以上の値を入力してください。");
+                return;
+            }
+
+            const jpyAmount = getEURJPYRate(eurAmount, exchangeData.rate);
+
+            //document.getElementById("eur-amount").textContent = eurAmount;
+
+            document.getElementById("jpy-amount").textContent = jpyAmount.toFixed(2);
+        });
+    }
+
+    main();
+</script>
 
 <div class="menu">
     <nav>
-        <ul>
+        <ul> 
             <li><a href="travel.html">Go Back</a></li>
         </ul>
     </nav>
@@ -18,12 +54,26 @@
 
 <div class="travelreport">
 
-    <h1>Bologna and Genoa</h1>
+    <h1>Bologna and Genoa<br>ボローニャとジェノヴァ</h1>
 
-    <p>One of my biggest purposes of this trip was to find and eat local foods.
-        <br> I Could find many great local foods, and also both of two cities were beautiful and great.</p>
+    <p>
+        One of my main goals for this trip was to find and eat local foods. <br>
+        I was able to find many great local dishes, and both cities were incredibly beautiful and wonderful.
+        <br><br>
+        この旅行の最大の目的の一つは、地元の食べ物を見つけて食べることでした。<br>
+        素晴らしい郷土料理をたくさん見つけることができましたし、どちらの都市も美しくて素晴らしい場所でした。
+    </p>
 
-    <h2>Itinerary</h2>
+    <h2>為替レート</h2>
+    <p>
+        現在の為替レートは、1ユーロ = <span id="eur-jpy-rate"></span>円 (<span id="eur-jpy-date"></span>現在) です。
+    </p>
+    <p>
+        <button id="convert-button">計算</button>
+        <input type="number" id="eur-input" placeholder="金額を入力">ユーロ = <span id="jpy-amount"></span>円
+    </p>
+
+    <h2>Itinerary<br>旅程</h2>
     <table>
         <tr>
             <th rowspan="3">13. Apr</th>
@@ -74,80 +124,119 @@
 
     </table>
 
-    <h2> Bologna </h2>
-    <p>Bologna is the capital of the Emilia-Romagna region in Italy.
-        <br>Bologna is known as student city
-        and also the birthplace of foods like bolognese (sauce) and lasagna.</p>
+    <h2>Bologna<br>ボローニャ</h2>
+    <p>
+        Bologna is the capital of the Emilia-Romagna region in Italy. <br>
+        It is known as a student city and is also the birthplace of foods like Bolognese sauce and lasagna.
+        <br><br>
+        ボローニャはイタリアのエミリア・ロマーニャ州の州都です。<br>
+        学生の街として知られており、ボロネーゼソースやラザニアなどの料理の発祥の地でもあります。
+    </p>
 
     <figure>
         <img src="pics/bologna_pizza.png" alt="Pizza">
-        <figcaption>Pizza Margarita and Beer<br>&#128205; <a href="https://maps.app.goo.gl/i86FndSWUPfAnkyFA"> Pizza
-            Export</a></figcaption>
+        <figcaption>Pizza Margherita and Beer
+            <br>マルゲリータピザとビール
+            <br>&#128205; <a href="https://maps.app.goo.gl/i86FndSWUPfAnkyFA"> Pizza Export</a>
+        </figcaption>
     </figure>
-    <p>Surprisingly, this margarita costs only 6€!
-        <br>This pizzeria is located in near of the main station.
-        The taste of the pizza was simple and good, with a sourness of the tomato sauce.
-        The price of the foods and drinks are very affordable.
-        I ordered a pizza, beer, and espresso.
-        Then, It costs only about 9€ in total!</p>
+    <p>
+        Surprisingly, this Margherita pizza cost only 6€! <br>
+        This pizzeria is located near the main station. The taste of the pizza was simple and good, with a nice sourness from the tomato sauce. The prices for food and drinks are very affordable. I ordered a pizza, a beer, and an espresso, and the total was only about 9€!
+        <br><br>
+        驚いたことに、このマルゲリータピザはたったの6ユーロでした！<br>
+        このピザ屋は中央駅の近くにあります。ピザの味はシンプルで美味しく、トマトソースの酸味が良かったです。食べ物と飲み物の価格は非常に手頃です。私はピザ、ビール、エスプレッソを注文しましたが、合計でたったの9ユーロほどでした！
+    </p>
 
     <figure>
         <img src="pics/bologna_cornetto.png" alt="Cornetto">
-        <figcaption>Cornetto with Pistachio Cream<br>&#128205; In old town of bologna</figcaption>
+        <figcaption>Cornetto with Pistachio Cream
+            <br>ピスタチオクリームのコルネット
+            <br>&#128205; In the old town of Bologna
+        </figcaption>
     </figure>
-    <p>I decided to try this café because I found the queue of the people on the street.
-        The café had a good atmosphere, and the taste of cornetto was worth for the waiting time.
-        <br> Unlike traditional cornetto with powdered sugar on top, this one had a crystal sugar on top.
-        The crystal sugar added a good accent of the texture.
-        Yet it is not traditional, I actually liked it very much. </p>
+    <p>
+        I decided to try this café because I saw a queue of people on the street. The café had a good atmosphere, and the cornetto was worth the wait. <br>
+        Unlike a traditional cornetto with powdered sugar on top, this one had crystal sugar. The crystal sugar added a nice textural accent. Even though it's not traditional, I actually liked it very much.
+        <br><br>
+        通りに人が並んでいるのを見て、このカフェに入ってみることにしました。カフェは雰囲気が良く、コルネットは待つ価値がありました。<br>
+        粉砂糖がかかった伝統的なコルネットとは違い、これにはザラメがかかっていました。このザラメが食感の良いアクセントになっていました。伝統的ではありませんが、私はこれがとても気に入りました。
+    </p>
 
     <figure>
         <img src="pics/bologna_sandwich.png" alt="tigelle">
-        <figcaption>Tigelle <br>&#128205;<a href="https://maps.app.goo.gl/fbvM8PrTrBvvwvhEA"> Tigellino</a></figcaption>
+        <figcaption>Tigelle
+            <br>ティジェッレ
+            <br>&#128205;<a href="https://maps.app.goo.gl/fbvM8PrTrBvvwvhEA"> Tigellino</a>
+        </figcaption>
     </figure>
-    <p>Tigelle is traditional bread of an Emilia-Romagna region.
-        It is usually tiny and has a rounded shape, and filled and served with toppings like cheese and ham.
-        <br> I ate the one with mortadella (traditional ham from Bologna) and caprese.
-        Both were great in taste, and was very light, and tigelle was slightly crispy.
-        <br>Two pieces were actually not enough.
-        Tigelle is much smaller than you think!
-        If you want to eat this as a lunch, I suggest that you order at least three of them.</p>
+    <p>
+        Tigelle is a traditional bread from the Emilia-Romagna region. It is usually tiny and round, and is served filled with ingredients like cheese and ham. <br>
+        I had one with mortadella (a traditional ham from Bologna) and another with caprese. Both tasted great and were very light, and the tigelle were slightly crispy. <br>
+        Two pieces were actually not enough. Tigelle are much smaller than you might think! If you want to have this for lunch, I suggest ordering at least three.
+        <br><br>
+        ティジェッレはエミリア・ロマーニャ州の伝統的なパンです。通常は小さくて丸い形をしており、チーズやハムなどを挟んで食べます。<br>
+        私はモルタデッラ（ボローニャの伝統的なハム）を挟んだものと、カプレーゼを挟んだものを食べました。どちらも美味しく、とても軽くて、ティジェッレは少しサクサクしていました。<br>
+        実は2つでは足りませんでした。ティジェッレは思っているよりずっと小さいです！昼食として食べるなら、少なくとも3つは注文することをおすすめします。
+    </p>
 
     <figure>
         <img src="pics/bologna_mortadella.png" alt="sandwich">
-        <figcaption>Sandwich with Mortadella <br>&#128205;<a href="https://maps.app.goo.gl/bPGUJZhLE3jJJH4t8">
-            Murtadela</a></figcaption>
+        <figcaption>Sandwich with Mortadella
+            <br>モルタデッラのサンドイッチ
+            <br>&#128205;<a href="https://maps.app.goo.gl/bPGUJZhLE3jJJH4t8"> Murtadela</a>
+        </figcaption>
     </figure>
-    <p>It is more like Mortadella with bread on top...
-        <br> But anyway, this sandwitch was really great and tasty.
-        If you want to eat a bunch of mortadella, this is the best for you.
-        This shop also opens until late night, so you can get this one after the supermarkets are closed. </p>
+    <p>
+        It’s more like a pile of mortadella with bread on top... <br>
+        But anyway, this sandwich was really great and tasty. If you want to eat a ton of mortadella, this is the best place for you. The shop is also open late, so you can grab one after the supermarkets are closed.
+        <br><br>
+        パンにモルタデッラが乗っているというより、モルタデッラの山にパンが乗っているような感じです…<br>
+        でもとにかく、このサンドイッチは本当に素晴らしくて美味しかったです。たくさんのモルタデッラを食べたいなら、ここは最高です。この店は夜遅くまで開いているので、スーパーが閉まった後でも買うことができます。
+    </p>
 
-    <h2> Genoa </h2>
-    <p>Genoa is one of the biggest coastal cities in northern Italy.
-        <br>Yet it is not so famous as a touristic city, Genoa is the birthplace of really famous food: pesto sauce!
-        <br> In Genoa, pesto is usually served with trofie, short twisted pasta. </p>
+    <h2>Genoa<br>ジェノヴァ</h2>
+    <p>
+        Genoa is one of the largest coastal cities in northern Italy. <br>
+        Although it is not as famous as a tourist destination, Genoa is the birthplace of a very famous food: pesto sauce! <br>
+        In Genoa, pesto is typically served with trofie, a short twisted pasta.
+        <br><br>
+        ジェノヴァは北イタリアで最大級の港町の一つです。<br>
+        観光地としてはそれほど有名ではありませんが、ジェノヴァは非常に有名な食べ物であるペストソース（ジェノベーゼ）の発祥の地です！<br>
+        ジェノヴァでは、ペストは通常「トロフィエ」という短いねじれたパスタと一緒に提供されます。
+    </p>
     <figure>
         <img src="pics/genoa_pesto.png" alt="Pesto">
-        <figcaption> Trofie al pesto <br>&#128205;<a href="https://maps.app.goo.gl/1cJEno9fwSCRGEDYA"> Pastificio
-            Artigianale di Canneto</a></figcaption>
+        <figcaption>Trofie al pesto
+            <br>トロフィエ・アル・ペスト
+            <br>&#128205;<a href="https://maps.app.goo.gl/1cJEno9fwSCRGEDYA"> Pastificio Artigianale di Canneto</a>
+        </figcaption>
     </figure>
-    <p>"Pastificio" in Italian stands for the shop that sells pasta or pasta factory.
-        That means this place is not a restaurant but more like a homemade pasta shop that can also eat pasta.
-        <br> Inside the shop was small, but the price of pasta was really affordable and the taste was magnificent.
-        Medium size of trofie costs only about 8€.
-        <br> The pesto sauce has a strong taste of onion and good flavor of the ingredients.
-        Trofie was one of the best ones I've ever eaten.
-        I want to visit there again, and next time, I would buy pasta from the shop.
-        </p>
+    <p>
+        In Italian, “pastificio” means a shop that sells pasta, or a pasta factory. This means the place isn’t a restaurant, but more like a homemade pasta shop where you can also eat. <br>
+        The inside of the shop was small, but the pasta was very affordable and the taste was magnificent. A medium portion of trofie cost only about 8€. <br>
+        The pesto sauce had a strong garlic flavor and really highlighted the quality of the ingredients. The trofie was some of the best I've ever eaten. I want to visit again, and next time I’ll definitely buy some pasta from the shop to take home.
+        <br><br>
+        イタリア語で「パスティフィーチョ」とは、パスタを売る店やパスタ工場を意味します。つまりここはレストランではなく、パスタを食べることもできる自家製パスタの店といった感じです。<br>
+        店内は狭かったですが、パスタの価格は非常に手頃で、味は絶品でした。中サイズのトロフィエはたったの8ユーロほどでした。<br>
+        ペストソースはニンニクの風味が強く、素材の良さが引き立っていました。トロフィエは私が今まで食べた中で最高のパスタの一つでした。またここを訪れたいです。次回は必ず店でパスタを買って帰りたいと思います。
+    </p>
     <figure>
         <img src="pics/genoa_cofee.png" alt="Coffee">
-        <figcaption>Espresso with Cream on top<br>&#128205; In old town of genoa</figcaption>
+        <figcaption>Espresso with Cream on top
+            <br>クリームを乗せたエスプレッソ
+            <br>&#128205; In the old town of Genoa
+        </figcaption>
     </figure>
-    <p>I usually walk a lot when I'm sightseeing the city.
-    I needed a little break, and I found the caffe in old town with delicious looking coffee with whipped cream.
-    <br> I don't know whai is it called in Italy, but this one was sweet and had good bitterness of espresso.
-    <br> It is good to take a short break when you get tired of walking.</p>
+    <p>
+        I usually walk a lot when I'm sightseeing in a city. I needed a little break, and I found a café in the old town offering a delicious-looking coffee topped with whipped cream. <br>
+        I don't know what it is called in Italy, but this one was sweet and balanced nicely with the bitterness of the espresso. <br>
+        It’s the perfect drink for a short break when you get tired of walking.
+        <br><br>
+        私は街を観光する時、たいていよく歩きます。少し休憩が必要だったとき、旧市街でホイップクリームが乗った美味しそうなコーヒーを出しているカフェを見つけました。<br>
+        イタリアで何と呼ばれているかは分かりませんが、これは甘く、エスプレッソの苦味と良いバランスが取れていました。<br>
+        歩き疲れた時の短い休憩にはぴったりの飲み物です。
+    </p>
 </div>
 </body>
 </html>
