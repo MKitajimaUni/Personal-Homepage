@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="scripts" href="scripts/rate.js">
+    <link rel="scripts" href="scripts/map.js">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <meta name="viewport" content="width=device-width">
+    <title>Vienna and Prague</title>
+</head>
+<body>
+<script src="scripts/rate.js"></script>
+<script src="scripts/map.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+<script>
+    async function main() {
+        // Fetch exchange data and add event listeners
+        const exchangeDataEUR = await getEURJPYJson();
+        const exchangeDataCZK = await getCZKJPYJson();
+
+        if (exchangeDataEUR === null || exchangeDataCZK === null) {
+            return;
+        }
+
+        document.getElementById("eur-jpy-rate").textContent =
+            exchangeDataEUR.rate.toFixed(2);
+
+        document.getElementById("czk-jpy-rate").textContent =
+            exchangeDataCZK.rate.toFixed(2);
+
+        document.getElementById("eur-jpy-date").textContent =
+            getJPStyleDate(exchangeDataEUR.date);
+
+        document.getElementById("czk-jpy-date").textContent =
+            getJPStyleDate(exchangeDataCZK.date);
+
+        document.getElementById("eur-convert-button").addEventListener("click", () => {
+            const eurAmount = Number(document.getElementById("eur-input").value);
+
+            if (isNaN(eurAmount) || eurAmount < 0) {
+                alert("0以上の値を入力してください。");
+                return;
+            }
+
+            const eurJpyAmount = getRate(eurAmount, exchangeDataEUR.rate);
+
+            document.getElementById("eur-jpy-amount").textContent = eurJpyAmount.toFixed(2);
+        });
+
+        document.getElementById("czk-convert-button").addEventListener("click", () => {
+            const czkAmount = Number(document.getElementById("czk-input").value);
+
+            if (isNaN(czkAmount) || czkAmount < 0) {
+                alert("0以上の値を入力してください。");
+                return;
+            }
+
+            const czkJpyAmount = getRate(czkAmount, exchangeDataCZK.rate);
+
+            document.getElementById("czk-jpy-amount").textContent = czkJpyAmount.toFixed(2);
+        });
+
+        // Fetch map base and pin for vienna and prague 
+        const viennaMap = await getBaseMap("vienna-map", 48.2082, 16.3738);
+        const pragueMap = await getBaseMap("prague-map", 50.0737, 14.4189);
+
+        var travelIcon = L.icon({
+            iconUrl: 'icons/travel_bag.png',
+            iconSize: [32, 32],
+            iconAnchor: [16, 16],
+            popupAnchor: [0, -16],
+            shadowUrl: 'icons/circle_black.png',
+            shadowSize: [38, 38],
+            shadowAnchor: [19, 19],
+        });
+        var foodIcon = L.icon({
+            iconUrl: 'icons/syokuji_blank_man.png',
+            iconSize: [32, 32],
+            iconAnchor: [16, 16],
+            popupAnchor: [0, -16],
+            shadowUrl: 'icons/circle_black.png',
+            shadowSize: [38, 38],
+            shadowAnchor: [19, 19],
+        });
+        var hotelIcon = L.icon({
+            iconUrl: 'icons/suimin_man.png',
+            iconSize: [32, 32],
+            iconAnchor: [16, 16],
+            popupAnchor: [0, -16],
+            shadowUrl: 'icons/circle_black.png',
+            shadowSize: [38, 38],
+            shadowAnchor: [19, 19],
+        });
+
+        // Pins
+        // vienna
+        L.marker([48.196462, 16.380087], {title: "Lower Belvedere", icon: travelIcon})
+        .addTo(viennaMap)
+        .bindPopup("<b>Lower Belvedere</b><br>ベルヴェデーレ宮殿")
+
+        L.marker([48.2080657,16.3561282], {title: "Parlament", icon: travelIcon})
+        .addTo(viennaMap)
+        .bindPopup("<b>Parlament</b><br>オーストリア国会議事堂")
+
+        L.marker([48.1850287,16.3109565], {title: "Schloss Schönbrunn", icon: travelIcon})
+        .addTo(viennaMap)
+        .bindPopup("<b>Schloss Schönbrunn</b><br>シェーンブルン宮殿")
+
+        L.marker([48.1933684,16.3353199], {title: "Vienna Hostel Ruthensteiner", icon: hotelIcon})
+        .addTo(viennaMap)
+        .bindPopup("<b>Vienna Hostel Ruthensteiner</b><br>ウィーン ホステル ルーテンシュタイナー <hr>Mixed Dormitory Room<br>Price: 24 EUR")
+
+        L.marker([48.2011469,16.3667887], {title: "Mei Wei", icon: foodIcon})
+        .addTo(viennaMap)
+        .bindPopup("<b>Mei Wei</b><br>メイウェイ<hr>Lunch: 23 EUR")
+
+        L.marker([48.2095821,16.3549172], {title: "Café Rathaus", icon: foodIcon})
+        .addTo(viennaMap)
+        .bindPopup("<b>Café Rathaus</b><br>カフェ ラートハウス<hr>Dinner: 22.8 EUR")
+
+        // prague
+        L.marker([50.0792829,14.4269783], {title: "Dream Hotel Prague", icon: hotelIcon})
+        .addTo(pragueMap)
+        .bindPopup("<b>Dream Hotel Prague</b><br>ドリームホテル　プラハ<hr>1 Mixed Dormitory Room<br>Price: 544 CZK")
+    }
+
+    main();
+</script>
+
+<div class="menu">
+    <nav>
+        <ul> 
+            <li><a href="travel.html">Go Back</a></li>
+        </ul>
+    </nav>
+</div>
+
+<div class="travelreport">
+
+    <h1>Vienna and Prague<br>ウィーンとプラハ</h1>
+
+    <p>
+        I had to go to Vienna to renew my passport, but I thought it would be a waste to just go to Vienna and come back, so I decided to stop by Prague as well.
+       This was my first trip to the Czech Republic, and Prague turned out to be a very beautiful city with delicious food and beer—it was a wonderful place.
+       <br><br>
+       パスポートの更新のためにウィーンに行かなければならなかったのですが、ただウィーンに行って帰るだけではもったいないのでプラハにも寄ることにしました。
+       今回が初めてのチェコ旅行でしたが、プラハは非常に美しい街で、料理やビールも美味しく、とても良い場所でした。
+    </p>
+
+    <h2>為替レート</h2>
+    <p>
+        現在の為替レートは、1ユーロ = <span id="eur-jpy-rate"></span>円 (<span id="eur-jpy-date"></span>時点) です。
+    </p>
+    <p>
+        <button id="eur-convert-button">計算</button>
+        <input type="number" id="eur-input" placeholder="金額を入力">ユーロ = <span id="eur-jpy-amount"></span>円
+    </p>
+    <p>
+        現在の為替レートは、1チェココルナ = <span id="czk-jpy-rate"></span>円 (<span id="czk-jpy-date"></span>時点) です。
+    </p>
+    <p>
+        <button id="czk-convert-button">計算</button>
+        <input type="number" id="czk-input" placeholder="金額を入力">チェココルナ = <span id="czk-jpy-amount"></span>円
+    </p>
+
+    <h2>Itinerary<br>旅程</h2>
+    <table>
+        <tr>
+            <th rowspan="3">14. Sep</th>
+            <td><img src="pics/morning.png" alt="Morning"></td>
+            <td> Salzburg &rarr; Vienna 🚃 <br>Westbahn, 43.99€</td>
+        </tr>
+        <tr>
+            <td><img src="pics/daytime.png" alt="Daytime"></td>
+            <td rowspan="2"> Sightseeing in Vienna</td>
+        </tr>
+        <tr>
+            <td><img src="pics/evening.png" alt="Evening"></td>
+        </tr>
+
+        <tr>
+            <td></td>
+        </tr>
+
+        <tr>
+            <th rowspan="3">15. Sep</th>
+            <td><img src="pics/morning.png" alt="Morning"></td>
+            <td rowspan="2"> Sightseeing in Vienna</td>
+        </tr>
+        <tr>
+            <td><img src="pics/daytime.png" alt="Daytime"></td>
+        </tr>
+        <tr>
+            <td><img src="pics/evening.png" alt="Evening"></td>
+            <td> Vienna &rarr; Prague 🚌<br>Flixbus, 14.48€</td>
+        </tr>
+
+        <tr>
+            <td></td>
+        </tr>
+
+        <tr>
+            <th rowspan="3">16. Sep</th>
+            <td><img src="pics/morning.png" alt="Morning"></td>
+            <td rowspan="2"> Sightseeing in Prague</td>
+        </tr>
+        <tr>
+            <td><img src="pics/daytime.png" alt="Daytime"></td>
+        </tr>
+        <tr>
+            <td><img src="pics/evening.png" alt="Evening"></td>
+            <td> Prague &rarr; Salzburg 🚌<br>Flixbus, 20.48€</td>
+        </tr>
+
+    </table>
+    <h2>Viena<br>ウィーン</h2>
+    <div id="vienna-map" class="travelreport-map"></div>
+    <h3>What I Ate<br>食べたもの</h3>
+    <figure>
+        <img src="pics/vienna_prague/meiwei.jpeg" alt="All you can eat + Teppanyaki">
+        <figcaption>All you can eat with Teppanyaki / Coke Zero / Tip
+            <br>食べ放題（鉄板焼き付き）/ コカ・コーラゼロ / チップ
+            <br>&#128205; <a href="https://maps.app.goo.gl/LCwDbSK6fbjyhr249">Mei Wei</a>
+            <br>17.5€ / 4€ / 1.5€
+        </figcaption>
+    </figure>
+    <p>
+        In Europe, you often find yourself unable to get Japanese food even when you crave it.
+        In such cases, I recommend visiting a Chinese buffet. Naturally, you can enjoy Chinese cuisine, but they often serve Japanese dishes like sushi and miso soup as well.
+        As for the taste, while it might not be exactly the same as in Japan, it is certainly delicious. In fact, the Chinese food itself might even be better than what you would find in Japan.
+        <br>
+        I have a small appetite and don't eat much, but since opportunities to sample a variety of dishes in small portions at European restaurants are rare (outside of set courses), I still think it is worth going.
+        <br>A tip of around 10% of the bill is generally appropriate. Usually, adding a few euros and rounding up the total works fine.
+        <br><br>
+        ヨーロッパでは、日本食が食べたくても食べられないことの方が多いです。
+        そんな時は中国料理のビュッフェに行くのがおすすめです。中国料理はもちろん食べられますし、寿司や味噌汁などの日本食もよく置いてあります。
+        味についても、日本と同じとは行かないまでも、十分に美味しく食べられます。中国料理に関しては、もしかしたら日本で食べるのよりも美味しいかもしれません。
+        <br>
+        私は少食であまり食べられませんが、そもそも（コース料理などを除いて）ヨーロッパのレストランでいろいろな料理を少しずつ食べる機会はあまりないので、少食でもでも行く価値はあると思っています。
+        <br>チップは大体代金の10%程度払えば良いと思います。数€＋端数を揃える感覚で大抵大丈夫です。
+    </p>
+    <figure>
+        <img src="pics/vienna_prague/cafe_rathaus.jpeg" alt="Gulasch / Beer">
+        <figcaption>Gulasch / Beer 
+            <br>グラーシュ / ビール
+            <br>&#128205; <a href="https://maps.app.goo.gl/E7gRB3X6N2HzgQDf6">Café Rathaus</a>
+            <br>17.9€ / 5.9€
+        </figcaption>
+    </figure>
+    <p>
+        I got off at the Rathaus (City Hall) subway station on a whim and was looking for a place to have dinner when I stumbled upon this place by chance.
+        The interior had the atmosphere of a traditional Austrian or German café and was very beautiful.
+        <br>
+        Goulash is a meat stew that originated in Hungary. In Austria, dishes similar to beef stew are called goulash.
+        It tasted exactly like beef stew and was absolutely delicious. The Knödel (which are like flour dumplings), the egg, and the wiener served as sides were all delicious, and the flavors were so satisfying that I never got tired of them.
+        I think many people want to try schnitzel when they visit Austria, but schnitzel is quite a large portion, and (personally) I find the taste gets old quickly.
+        If you’re in the mood for something different, I think this is a great choice.
+        <br><br>
+        地下鉄のRathaus（市庁舎）駅で適当に降りて夕食を取る場所を探していたところ、偶然見つけました。
+        内装はオーストリアやドイツの伝統的なカフェの雰囲気があり、とても綺麗でした。
+        <br>
+        グラーシュは、ハンガリーを起源とする肉煮込み料理です。オーストリアでは、ビーフシチューのような料理をグラーシュと呼びます。
+        味はまさにビーフシチューといった感じで、とても美味しかったです。付け合わせとして出ていたKnödel（小麦粉団子のようなもの）、卵、ウインナーのどれもが美味しく、飽きのこない味でした。
+        オーストリアに来たならシュニッツェルを食べたいという人も多いと思いますが、シュニッツェルはかなり量が多い上に（個人的には）食べ飽きやすい味です。
+        違うものが食べたいと思った時には、とても良い選択だと思います。
+    </p>
+    <h3>Where I visited<br>訪れた場所</h3>
+    <figure>
+        <img src="pics/vienna_prague/parlament.jpeg" alt="Parlament">
+        <figcaption>Statue in front of Parlament
+            <br>国会議事堂前の彫像
+            <br>&#128205; <a href="https://maps.app.goo.gl/YJdtEev8kMEFknDp9">Parlament Österreich</a>
+        </figcaption>
+    </figure>
+    <figure>
+        <img src="pics/vienna_prague/schoenbrunn.jpg" alt="Schloss Schönbrunn">
+        <figcaption>Schloss Schönbrunn
+            <br>シェーンブルン宮殿
+            <br>&#128205; <a href="https://maps.app.goo.gl/xGPH4YKq1hKryiyB7">Schloss Schönbrunn</a>
+        </figcaption>
+    </figure>
+    <h2>Prague<br>プラハ</h2>
+    <div id="prague-map" class="travelreport-map"></div>
+</div>
+</body>

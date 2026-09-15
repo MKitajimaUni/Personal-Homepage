@@ -33,9 +33,7 @@
                 return;
             }
 
-            const jpyAmount = getEURJPYRate(eurAmount, exchangeData.rate);
-
-            //document.getElementById("eur-amount").textContent = eurAmount;
+            const jpyAmount = getRate(eurAmount, exchangeData.rate);
 
             document.getElementById("jpy-amount").textContent = jpyAmount.toFixed(2);
         });

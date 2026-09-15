@@ -10,6 +10,11 @@ h2 {
     margin-top: 20px;
 }
 
+h3 {
+    font-family: noto SansSerif, sans-serif;
+    margin-top: 20px;
+}
+
 td {
     font-family: noto SansSerif, sans-serif;
 }
@@ -204,8 +209,14 @@ body {
     text-align: center;
 }
 
-.travelreport h2 {
+.travelreport h2{
     text-align: center;
+    padding-top: 60px;
+}
+
+.travelreport h3 {
+    text-align: center;
+    padding-top: 20px;
 }
 
 .travelreport table {
@@ -264,6 +275,36 @@ body {
     margin-top: 20px;
 }
 
+
+.travelreport figcaption {
+    color: dimgray;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.travelreport p {
+    padding: 10px 10px 20px;
+}
+
+.travelreport a {
+    color: blue;
+    text-decoration-color: blue;
+}
+
+.travelreport-map {
+    aspect-ratio: 4 / 3;
+    width: 50%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.travelreport-map img {
+    border: none;
+    border-radius: 0%;
+}
+
 @media screen and (max-width: 576px) {
     .travelreport figure img {
         aspect-ratio: 4 / 3;
@@ -279,6 +320,10 @@ body {
         border-radius: 10px;
     }
 
+    .travelreport-map {
+        width: 90%;
+    }
+
     .triplist table img {
         width: 90%;
         height: auto;
@@ -287,35 +332,13 @@ body {
     }
 }
 
-.travelreport figcaption {
-    color: dimgray;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.travelreport h2 {
-    padding-top: 60px;
-}
-
-.travelreport p {
-    padding: 10px 10px 20px;
-}
-
-.travelreport a {
-    color: blue;
-    text-decoration-color: blue;
-}
-
-.travelreport a:link {
-}
-
 .travelmenu nav {
     width: 30%;
     height: 50px;
     padding-top: 2px;
     box-sizing: border-box;
     background-color: white;
-
+    
 }
 
 .travelmenu {
